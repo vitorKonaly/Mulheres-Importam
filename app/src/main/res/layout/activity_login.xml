@@ -38,7 +38,7 @@
 
             <!-- INPUT -->
             <EditText
-                android:id="@+id/username_input"
+                android:id="@+id/email_logar"
                 android:layout_toRightOf="@+id/username_icon"
                 android:hint="Email"
                 android:textSize="12sp"
@@ -75,7 +75,7 @@
 
             <!-- INPUT -->
             <EditText
-                android:id="@+id/pass"
+                android:id="@+id/senha_logar"
                 android:layout_toRightOf="@+id/icon"
                 android:hint="Password"
                 android:textSize="12sp"
@@ -104,6 +104,7 @@
 
 
         <Button
+            android:id="@+id/btn_logar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
