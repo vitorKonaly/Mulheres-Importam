@@ -48,6 +48,7 @@ class Login : AppCompatActivity() {
                         response: Response<LoginResponse>
                     ) {
                         Toast.makeText(this@Login,"Usuário logado com sucesso", Toast.LENGTH_SHORT).show()
+                        sessionManager.saveAuthToken(response.body()!!.access_token)
                         val intent = Intent(this@Login,TelaInicial::class.java)
                         startActivity(intent)
                     }
