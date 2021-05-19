@@ -13,6 +13,7 @@ import com.konaly.mulhersimportamofc.MainActivity
 import com.konaly.mulhersimportamofc.R
 import com.konaly.mulhersimportamofc.adapter.ProdutosAdapter
 import com.konaly.mulhersimportamofc.models.Produto
+import com.konaly.mulhersimportamofc.models.ProdutoItem
 import com.konaly.mulhersimportamofc.networks.ApiClient
 import com.konaly.mulhersimportamofc.shared.SessionManage
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -51,16 +52,24 @@ class HomeFragment() : Fragment() {
         sessionManager = SessionManage(requireContext())
 
         apiClient.getApiService(requireContext()).getProdutos()
-            .enqueue(object : Callback<Produto>{
+            .enqueue(object : Callback<Produto>, ProdutosAdapter.ClickProduto {
                 override fun onFailure(call: Call<Produto>, t: Throwable) {
-                    Toast.makeText(requireContext(),"ERRO",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"FALHA",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onResponse(call: Call<Produto>, response: Response<Produto>) {
                     recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                    recyclerView.adapter = response.body()?.let { ProdutosAdapter(it) }
+                    recyclerView.adapter = response.body()?.let { ProdutosAdapter(it,this) }
+
+
+                }
+
+                override fun clickProduto(produto: Produto) {
+                    Toast.makeText(requireContext(),"jsdlfkj",Toast.LENGTH_SHORT).show()
                 }
             })
     }
+
+
 
 }
